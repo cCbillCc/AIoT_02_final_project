@@ -53,7 +53,7 @@
 | SDA | GPIO 2 (Pin 3) | I2C Data |
 | SCL | GPIO 3 (Pin 5) | I2C Clock |
 
-![接線圖](./README/FIG1.png)
+![接線圖](./README/fig1.png)
 
 ## 💻 軟體安裝與設定 (Installation)
 
