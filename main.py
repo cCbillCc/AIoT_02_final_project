@@ -96,7 +96,6 @@ def is_connected(user, mac_address):
                 time.sleep(2)
                 continue
             else:
-                print("discanating")
                 bibi.on()
                 time.sleep(3)
                 bibi.off()
