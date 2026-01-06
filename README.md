@@ -6,7 +6,7 @@
 
 ## 專案簡介 (Project Description)
 
-EcoGuard 是一套整合 Raspberry Pi 5、RFID 身分驗證與藍牙訊號偵測的實驗室管理系統。本系統解決了傳統刷卡無法確認人員實際在席的問題，透過持續監測使用者手機藍牙連線狀態，實現「人走即自動簽退」的精準節能管理，並將數據即時上傳至 AWS IoT Core 進行可視化監控。
+本專案是一套整合 Raspberry Pi 5、RFID 身分驗證與藍牙訊號偵測的實驗室管理系統。本系統解決了傳統刷卡無法確認人員實際在席的問題，透過持續監測使用者手機藍牙連線狀態，實現「人走即自動簽退」的精準節能管理，並將數據即時上傳至 AWS IoT Core 進行可視化監控。
 
 ## 系統功能 (Features)
 
@@ -16,7 +16,7 @@ EcoGuard 是一套整合 Raspberry Pi 5、RFID 身分驗證與藍牙訊號偵測
 
 - **雲端整合**：使用 MQTT 協定將 Check-in/Check-out 狀態上傳至 AWS IoT Core。
 
-- **即時回饋**：透過 LCD 螢幕與 LED/蜂鳴器提示當前狀態。
+- **即時回饋**：透過 LCD 螢幕與蜂鳴器提示當前狀態。
 
 ## 硬體需求 (Hardware Requirements)
 
@@ -52,6 +52,7 @@ EcoGuard 是一套整合 Raspberry Pi 5、RFID 身分驗證與藍牙訊號偵測
 | VCC | 5V (Pin 2) | 電源 |
 | SDA | GPIO 2 (Pin 3) | I2C Data |
 | SCL | GPIO 3 (Pin 5) | I2C Clock |
+![接線圖](./README/FIG1.png)
 
 ## 💻 軟體安裝與設定 (Installation)
 
@@ -80,7 +81,7 @@ source venv/bin/activate
 pip install --upgrade pip
 
 # 安裝必要函式庫
-pip install spidev mfrc522 smbus2 AWSIoTPythonSDK RPi.GPIO
+pip install spidev mfrc522 smbus2 AWSIoTPythonSDK rpi-lgpio
 
 ```
 
@@ -116,6 +117,9 @@ EcoGuard/
 
 > **注意**：手機需先與 Raspberry Pi 進行藍牙配對 (Pairing)，以確保 `bluetoothctl` 能正確讀取連線狀態。
 
+##  ⌨️  程式架構 (Architecture)
+![接線圖](./README/fig2.jpg)
+
 ## ▶️ 執行方法 (Usage)
 
 在虛擬環境啟動的狀態下，執行主程式：
@@ -140,6 +144,11 @@ python main.py
 2. **AWS 連線失敗？**
 * 檢查 `certs/` 資料夾內的三個憑證檔案名稱是否與程式碼內的路徑一致。
 * 確認 Raspberry Pi 網路連線正常。
+
+
+3. **藍牙偵測不到？**
+* 請確認手機藍牙已開啟，且已在 Raspberry Pi 的藍牙選單中完成「信任 (Trust)」與「配對」。
+
 
 
 3. **藍牙偵測不到？**
